@@ -1,0 +1,18 @@
+{
+  "name": "fcis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "example.js",
+  "scripts": {
+    "run": "node -e 'w=require(\"./weather.js\");w.main({})'",
+    "test": "node test-weather.js"
+  },
+  "author": "@sleepyfox",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2"
+  },
+  "devDependencies": {
+    "@gowerstreet/infintestimal": "^1.1.1"
+  }
+}
