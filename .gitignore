@@ -1,4 +1,4 @@
-node_modules
+node/node_modules
 *~
-package-lock.json
-weather*.json
+node/package-lock.json
+node/cms-*.json

@@ -1,0 +1,15 @@
+{
+  "name": "fcis",
+  "version": "1.0.0",
+  "description": "A code kata for illustrating the Functional Core, Imperative Shell pattern.",
+  "main": "cms.js",
+  "scripts": {
+    "run": "node -e 'cms=require(\"./cms.js\");cms.main({})'",
+    "test": "node test-cms.js"
+  },
+  "author": "@sleepyfox",
+  "license": "CC-BY-SA-NC-3.0",
+  "dependencies": {
+    "axios": "0.27.x"
+  }
+}
