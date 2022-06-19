@@ -18,7 +18,7 @@ function delete_existing_cms_file() {
 }
 
 async function test_cms_writes_report_file() {
-  await sut()
+  await sut({}, fs)
   assert.ok(fs.existsSync(filename), 'failed finding report file ' + filename)
 }
 

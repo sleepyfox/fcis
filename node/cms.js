@@ -4,7 +4,7 @@ const axios = require('axios').default
 const CMS_URL = 'http://jsonplaceholder.typicode.com/posts'
 
 module.exports = {
-  main: async function(context) {
+  main: async function(context, filesystem = fs) {
     try {
       const res = await axios.get(CMS_URL)
       console.log('Getting CMS data')
@@ -23,7 +23,7 @@ module.exports = {
         }
         summary.users = users.length
         summary.mean_posts_per_user = Math.round(summary.posts / summary.users)
-        fs.writeFileSync('cms-' + today + '.json', JSON.stringify(summary))
+        filesystem.writeFileSync('cms-' + today + '.json', JSON.stringify(summary))
         console.log('Wrote CMS report')
         return Promise.resolve(true)
       } else {
