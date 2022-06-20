@@ -32,7 +32,7 @@ async function test_axios_stub_returns_cms_data() {
 }
 
 async function test_cms_writes_report_file() {
-  await sut({}, fs_stub)
+  await sut({}, fs_stub, axios_stub)
   assert.ok(fs_stub.existsSync(filename), `failed finding report file ${filename}`)
   return Promise.resolve(true)
 }
@@ -40,14 +40,14 @@ async function test_cms_writes_report_file() {
 function test_report_file_contains_cms_data() {
   let contents = fs_stub.readFileSync(filename, 'utf8')
   let data = JSON.parse(contents)
-  assert.equal(100, data?.posts, 'posts should be 100')
-  assert.equal(10, data?.users, 'users should be 10')
+  assert.equal(2, data?.posts, 'posts should be 2')
+  assert.equal(1, data?.users, 'users should be 1')
 }
 
 function test_calculate_mean_users() {
   let contents = fs_stub.readFileSync(filename, 'utf8')
   let data = JSON.parse(contents)
-  assert.equal(10, data?.mean_posts_per_user, 'average posts per user should be 10')
+  assert.equal(2, data?.mean_posts_per_user, 'average posts per user should be 2')
 }
 
 async function run_tests() {
