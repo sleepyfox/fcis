@@ -1,5 +1,6 @@
 const assert = require('assert')
 
+const axios_stub = require('./axios_stub')
 const sut = require('./cms').main
 const expected = ""
 const today = new Date()
@@ -28,30 +29,6 @@ function test_fs_stub_records_file_name() {
 function test_fs_stub_records_file_data() {
   fs_stub.writeFileSync('cat', 'dog')
   assert.equal(fs_stub.readFileSync('cat'), 'dog', 'file contents don\'t match')
-}
-
-let axios_stub = {
-  uri_called: "",
-  get: async (uri) => {
-    this.uri_called = uri
-    return Promise.resolve(JSON.stringify({
-      status: 200,
-      data: [
-        {
-          "userId": 1,
-          "id": 1,
-          "title": "sunt aut facere",
-          "body": "quia et suscipit"
-        },
-        {
-          "userId": 1,
-          "id": 2,
-          "title": "qui est esse",
-          "body": "est rerum tempore vitae"
-        }
-      ]
-    }))
-  }
 }
 
 async function test_axios_stub_returns_data() {
