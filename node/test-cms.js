@@ -1,4 +1,3 @@
-const fs = require('fs')
 const assert = require('assert')
 
 const sut = require('./cms').main
@@ -31,6 +30,38 @@ function test_fs_stub_records_file_data() {
   assert.equal(fs_stub.readFileSync('cat'), 'dog', 'file contents don\'t match')
 }
 
+let axios_stub = {
+  uri_called: "",
+  get: async (uri) => {
+    this.uri_called = uri
+    return Promise.resolve(JSON.stringify({
+      status: 200,
+      data: [
+        {
+          "userId": 1,
+          "id": 1,
+          "title": "sunt aut facere",
+          "body": "quia et suscipit"
+        },
+        {
+          "userId": 1,
+          "id": 2,
+          "title": "qui est esse",
+          "body": "est rerum tempore vitae"
+        }
+      ]
+    }))
+  }
+}
+
+async function test_axios_stub_returns_data() {
+  let api_data = await axios_stub.get()
+  let result = JSON.parse(api_data)
+  assert.equal(result.status, 200, 'status should be OK')
+  assert.equal(result.data.length, 2, 'there should be two records')
+  assert.equal(result.data[0].userId, 1, 'first post should be by userId 1')
+}
+
 async function test_cms_writes_report_file() {
   await sut({}, fs_stub)
   assert.ok(fs_stub.existsSync(filename), `failed finding report file ${filename}`)
@@ -51,6 +82,7 @@ function test_calculate_mean_users() {
 }
 
 async function run_tests() {
+  await test_axios_stub_returns_data()
   test_fs_stub_records_file_name()
   test_fs_stub_records_file_data()
   await test_cms_writes_report_file()
