@@ -27,6 +27,22 @@ function write_report(fs, report) {
   const today_date = today.toISOString().slice(0,10)
   const filename = 'cms-' + today_date + '.json'
   fs.writeFileSync(filename, JSON.stringify(report))
+  return true
+}
+
+function create_report(posts) {
+  let summary = { posts: 0, users: 0, posts_per_user: 0 }
+  let users = []
+  for (let i = 0; i < posts.length; i++) {
+    summary.posts++
+    if (!users.includes(posts[i].userId)) {
+      users.push(posts[i].userId)
+    }
+  }
+  summary.users = users.length
+  summary.mean_posts_per_user = Math.round(summary.posts / summary.users)
+
+  return summary
 }
 
 module.exports = {
@@ -34,19 +50,9 @@ module.exports = {
     const posts = await cms_get_posts(fetch)
     console.log('CMS data has: ', posts.length, 'records')
 
-    let summary = { posts: 0, users: 0, posts_per_user: 0 }
-    let users = []
-    for (let i = 0; i < posts.length; i++) {
-      // console.log('processing record', i, 'for user', res.data[i].userId)
-      summary.posts++
-      if (!users.includes(posts[i].userId)) {
-        users.push(posts[i].userId)
-      }
-    }
-    summary.users = users.length
-    summary.mean_posts_per_user = Math.round(summary.posts / summary.users)
+    const report = create_report(posts)
 
-    write_report(filesystem, summary)
+    write_report(filesystem, report)
     console.log('wrote CMS report')
 
     return Promise.resolve(true)
