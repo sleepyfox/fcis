@@ -22,12 +22,18 @@ async function cms_get_posts(fetch) {
   }
 }
 
+function write_report(fs, report) {
+  const today = new Date()
+  const today_date = today.toISOString().slice(0,10)
+  const filename = 'cms-' + today_date + '.json'
+  fs.writeFileSync(filename, JSON.stringify(report))
+}
+
 module.exports = {
   main: async function(context, filesystem = fs, fetch = axios) {
-    posts = await cms_get_posts(fetch)
+    const posts = await cms_get_posts(fetch)
     console.log('CMS data has: ', posts.length, 'records')
-    let today = new Date()
-    today = today.toISOString().slice(0,10)
+
     let summary = { posts: 0, users: 0, posts_per_user: 0 }
     let users = []
     for (let i = 0; i < posts.length; i++) {
@@ -39,8 +45,10 @@ module.exports = {
     }
     summary.users = users.length
     summary.mean_posts_per_user = Math.round(summary.posts / summary.users)
-    filesystem.writeFileSync('cms-' + today + '.json', JSON.stringify(summary))
+
+    write_report(filesystem, summary)
     console.log('wrote CMS report')
+
     return Promise.resolve(true)
   }
 }
