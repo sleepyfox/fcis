@@ -1,25 +1,13 @@
 const assert = require('assert')
 
 const axios_stub = require('./axios_stub')
+const fs_stub = require('./fs_stub')
 const sut = require('./cms').main
 const expected = ""
 const today = new Date()
 const date_today = today.toISOString().slice(0,10)
 console.log('todays date is', date_today)
 const filename = 'cms-' + date_today + '.json'
-
-let fs_stub = {
-  file_data: "",
-  file_name: "",
-  writeFileSync: (filename, data) => {
-    // console.log('writefile called with', filename)
-    this.file_name = filename
-    this.file_data = data
-    return true
-  },
-  existsSync: (name) => { return (this.file_name == name) },
-  readFileSync: () => { return this.file_data }
-}
 
 function test_fs_stub_records_file_name() {
   fs_stub.writeFileSync('cat', 'dog')
@@ -31,12 +19,16 @@ function test_fs_stub_records_file_data() {
   assert.equal(fs_stub.readFileSync('cat'), 'dog', 'file contents don\'t match')
 }
 
-async function test_axios_stub_returns_data() {
-  let api_data = await axios_stub.get()
-  let result = JSON.parse(api_data)
-  assert.equal(result.status, 200, 'status should be OK')
-  assert.equal(result.data.length, 2, 'there should be two records')
-  assert.equal(result.data[0].userId, 1, 'first post should be by userId 1')
+async function test_axios_stub_returns_200_OK() {
+  let api = await axios_stub.get()
+  assert.equal(api.status, 200, 'status should be OK')
+}
+
+async function test_axios_stub_returns_cms_data() {
+  let api = await axios_stub.get()
+  let result = api.data
+  assert.equal(result.length, 2, 'there should be two records')
+  assert.equal(result[0].userId, 1, 'first post should be by userId 1')
 }
 
 async function test_cms_writes_report_file() {
@@ -59,7 +51,8 @@ function test_calculate_mean_users() {
 }
 
 async function run_tests() {
-  await test_axios_stub_returns_data()
+  await test_axios_stub_returns_200_OK()
+  await test_axios_stub_returns_cms_data()
   test_fs_stub_records_file_name()
   test_fs_stub_records_file_data()
   await test_cms_writes_report_file()

@@ -2,7 +2,7 @@ module.exports = {
   uri_called: "",
   get: async (uri) => {
     this.uri_called = uri
-    return Promise.resolve(JSON.stringify({
+    return Promise.resolve({
       status: 200,
       data: [
         {
@@ -18,6 +18,6 @@ module.exports = {
           "body": "est rerum tempore vitae"
         }
       ]
-    }))
+    })
   }
 }
