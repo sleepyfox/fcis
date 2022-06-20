@@ -4,10 +4,11 @@ const axios = require('axios').default
 const CMS_URL = 'http://jsonplaceholder.typicode.com/posts'
 
 module.exports = {
-  main: async function(context, filesystem = fs) {
+  main: async function(context, filesystem = fs, fetch = axios) {
     try {
-      const res = await axios.get(CMS_URL)
+      const res = await fetch.get(CMS_URL)
       console.log('Getting CMS data')
+
       if (res.status === 200) {
         console.log('CMS data has: ', res.data.length, 'records')
         let today = new Date()
