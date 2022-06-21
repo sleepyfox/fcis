@@ -10,7 +10,17 @@ The code is a microcosm of much of the effectful code that we as programmers dea
 
 The objective of this kata is to take the mixed-up code that we start with, and refactor it gradually, step-by-step, into code that implements the Functional Core, Imperative Shell pattern and is easier to test, and easier to change. Simples.
 
-Starter code is provided in [JavaScript](./node), with other languages to come.
+Starter code is provided in Javascript, with other languages to come.
+
+## Implementations
+
+* [JavaScript](./node)
+
+## Contributing
+
+Contributions are welcome. If you would like to contribute an implementation of the base (unrefactored) code in another language, please send a PR, putting the new language code in its own folder as I have done with the Node example. The code should follow the same kind of naive, imperative, mixed together - i.e. unmodularised - style that the JavaScript version does.
+
+I will link your implementation in this README and mention you as the author by git username, and any other identification you wish me to provide.
 
 ## License
 
