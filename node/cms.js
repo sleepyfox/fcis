@@ -7,7 +7,7 @@ module.exports = {
   main: async function(context) {
     try {
       const res = await axios.get(CMS_URL)
-      console.log('getting CMS data')
+      console.log('Getting CMS data')
       if (res.status === 200) {
         console.log('CMS data has: ', res.data.length, 'records')
         let today = new Date()
@@ -24,14 +24,14 @@ module.exports = {
         summary.users = users.length
         summary.mean_posts_per_user = Math.round(summary.posts / summary.users)
         fs.writeFileSync('cms-' + today + '.json', JSON.stringify(summary))
-        console.log('wrote CMS report')
+        console.log('Wrote CMS report')
         return Promise.resolve(true)
       } else {
-        console.log('error occurred, status =', res.status)
+        console.log('Error occurred, status =', res.status)
         return Promise.reject('error')
       }
     } catch (err) {
-      console.log('an error occurred getting the post data', err)
+      console.log('An error occurred getting the post data', err)
       return Promise.reject('error')
     }
   }
