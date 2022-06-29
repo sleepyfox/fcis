@@ -10,12 +10,13 @@ The code is a microcosm of much of the effectful code that we as programmers dea
 
 The objective of this kata is to take the mixed-up code that we start with, and refactor it gradually, step-by-step, into code that implements the Functional Core, Imperative Shell pattern and is easier to test, and easier to change. Simples.
 
-Starter code is provided in Javascript, with other languages to come.
+Starter code is provided in Javascript, Python, and Java, with other languages to come.
 
 ## Implementations
 
 * [JavaScript](./node)
 * [Python 3](./python)
+* [Java](./java)
 
 ## Contributing
 
