@@ -10,12 +10,13 @@ The code is a microcosm of much of the effectful code that we as programmers dea
 
 The objective of this kata is to take the mixed-up code that we start with, and refactor it gradually, step-by-step, into code that implements the Functional Core, Imperative Shell pattern and is easier to test, and easier to change. Simples.
 
-Starter code is provided in Javascript, Python, and Java, with other languages to come.
+Starter code is provided in the following languages:
 
 ## Implementations
 
 * [JavaScript](./node)
 * [Python 3](./python)
+* [Ruby](.ruby)
 * [Java](./java)
 
 ## Contributing
@@ -29,7 +30,7 @@ I will link your implementation in this README and mention you as the author by 
 In order to help contributors with providing a compliant version of the base kata, here are the requirements that the original was developed against:
 
 1. The summary report generator (GENERATOR) MUST get CMS data from the following URI: http://jsonplaceholder.typicode.com/posts 
-1. The GENERATOR MUST calculate i) the number of posts, ii) the number of distinct users, iii) the mean number of posts per user
+1. The GENERATOR MUST calculate i) the number of posts, ii) the number of distinct users, iii) the mean number of posts per user (rounded to nearest whole number)
 1. The summary report (REPORT) MUST be written to a file on disk with the name `cms-<date>.json` where date is today's date in the form YYYY-MM-DD
 1. The REPORT MUST be formatted as a JSON object of the form '{ "posts": 0, "users": 0, "mean_posts_per_user": 0 }'
 1. The GENERATOR MUST log the string 'Getting CMS data' when getting the data from the CMS
