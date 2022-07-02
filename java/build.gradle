@@ -1,9 +1,10 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 group 'london-code-dojo'
 version '1.0-SNAPSHOT'
+application.mainClass = 'CMS'
 
 repositories {
     mavenCentral()
