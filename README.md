@@ -17,7 +17,8 @@ Starter code is provided in the following languages:
 * [JavaScript](./node)
 * [Python 3](./python)
 * [Ruby](.ruby)
-* [Java](./java)
+* [Java](./java) by @tumbarumba
+* [Go](./go) by @erdincmutlu
 
 ## Contributing
 
