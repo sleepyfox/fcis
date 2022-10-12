@@ -35,7 +35,7 @@ In order to help contributors with providing a compliant version of the base kat
 1. The summary report (REPORT) MUST be written to a file on disk with the name `cms-<date>.json` where date is today's date in the form YYYY-MM-DD
 1. The REPORT MUST be formatted as a JSON object of the form '{ "posts": 0, "users": 0, "mean_posts_per_user": 0 }'
 1. The GENERATOR MUST log the string 'Getting CMS data' when getting the data from the CMS
-1. The GENERATOR MUST log the string `CMS data has: <n> records`, where n is the number of posts
+1. The GENERATOR MUST log the string `'CMS data has: <n> records'`, where n is the number of posts
 1. The GENERATOR MUST log the string 'Wrote CMS report' after the REPORT is written to disk
 1. If the GENERATOR cannot contact the CMS an error MUST be reported
 1. If the GENERATOR does not recieve valid JSON data from the CMS an error MUST be reported
