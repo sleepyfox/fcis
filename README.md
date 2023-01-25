@@ -14,15 +14,16 @@ Starter code is provided in the following languages:
 
 ## Implementations
 
+* [Go](./go) by @erdincmutlu
+* [Java](./java) by @tumbarumba
 * [JavaScript](./node)
 * [Python 3](./python)
 * [Ruby](.ruby)
-* [Java](./java) by @tumbarumba
-* [Go](./go) by @erdincmutlu
+* [Rust](./rust)
 
 ## Contributing
 
-Contributions are welcome. If you would like to contribute an implementation of the base (unrefactored) code in another language, please send a PR, putting the new language code in its own folder as I have done with the Node example. The code should follow the same kind of naive, imperative, mixed together - i.e. unmodularised - style that the JavaScript version does.
+Contributions are welcome. If you would like to contribute an implementation of the base (unrefactored) code in another language, please send a PR, putting the new language code in its own folder as I have done with the Node example. The code should follow the same kind of naive, imperative, mixed together - i.e. unmodularised - style that the other implementations do.
 
 I will link your implementation in this README and mention you as the author by git username, and any other identification you wish me to provide.
 
